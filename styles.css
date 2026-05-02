@@ -40,7 +40,6 @@ body {
     color: var(--text-main);
     font-size: 13px; /* Smaller base size for Fusion look */
     line-height: 1.4;
-     hidden;
 }
 
 /* NAVBAR - Fusion Toolbar */
@@ -144,7 +143,7 @@ body {
     background: var(--bg-side);
     display: flex;
     flex-direction: column;
-    
+    overflow: hidden;
 }
 
 .scroll-col {
@@ -217,72 +216,85 @@ body {
     flex: 1;
     background: #e5e5e5;
     position: relative;
-    
+    overflow: hidden;
 }
 
 .map-grid {
     width: 100%;
     height: 100%;
+    min-height: 600px; /* Prevent collapse */
+    background-color: #1a1a1a; /* Darker for better contrast */
     background-image: 
-        radial-gradient(circle, #ccc 1px, transparent 1px),
-        linear-gradient(to right, #ddd 1px, transparent 1px),
-        linear-gradient(to bottom, #ddd 1px, transparent 1px);
-    background-size: 30px 30px;
+        radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
     position: relative;
-}
-
-.map-block {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: #fff;
-    border: 1px solid #999;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+    padding: 2rem;
+    overflow: hidden;
+}
+
+.map-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 1100px;
+    max-height: 85vh;
+    display: block;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+}
+
+.ward-path {
+    fill: #2d2d2d; /* Lighter than background */
+    stroke: #444;
+    stroke-width: 2.5px;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
-.map-block:hover {
-    border-color: var(--primary);
-    z-index: 10;
+.ward-path:hover {
+    fill: #3d3d3d;
+    stroke: var(--primary);
+    stroke-width: 4px;
 }
 
-.map-block.selected {
-    border-color: var(--primary);
-    outline: 2px solid var(--primary);
-    background: #fff;
+.ward-path.selected {
+    fill: #333;
+    stroke: var(--primary);
+    stroke-width: 5px;
+    filter: drop-shadow(0 0 15px var(--primary));
 }
 
-.map-block span {
-    font-size: 9px;
-    text-transform: uppercase;
+.ward-label {
+    font-family: var(--font-main);
+    font-size: 14px;
     font-weight: 700;
-    color: #777;
-    text-align: center;
-    line-height: 1.1;
+    text-transform: uppercase;
+    fill: #888;
+    pointer-events: none;
+    text-anchor: middle;
+    letter-spacing: 0.12em;
 }
 
-.map-block strong {
+.ward-score-label {
     font-family: var(--font-mono);
-    font-size: 16px;
-    margin-top: 4px;
+    font-size: 32px;
+    font-weight: 800;
+    fill: #fff;
+    pointer-events: none;
+    text-anchor: middle;
 }
 
-/* Ward Coordinates */
-#block-castlemore   { top: 10%; right: 15%; }
-#block-northpark    { top: 15%; left: 40%; }
-#block-bramalea     { top: 50%; right: 10%; }
-#block-springdale   { top: 25%; left: 30%; }
-#block-downtown     { top: 65%; left: 45%; }
-#block-fletchers    { top: 75%; left: 15%; }
-#block-heartlake    { top: 10%; left: 15%; }
-#block-bramptonwest { top: 45%; left: 5%; }
-#block-bramptoneast { top: 80%; right: 20%; }
-#block-goremeadows  { top: 35%; right: 30%; }
+/* Map Legend and HUD */
+.hud-legend {
+    background: rgba(43, 43, 43, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #444;
+    border-radius: var(--radius-sm);
+    z-index: 10;
+    color: #eee !important;
+}
 
 /* BOTTOM STRIP */
 .bottom-strip {
@@ -445,4 +457,61 @@ body {
     color: var(--primary);
     letter-spacing: 0.1em;
     margin-bottom: 1rem;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 1rem;
+        background: transparent;
+    }
+
+    .col {
+        height: auto;
+        min-height: 300px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .scroll-col {
+        overflow-y: visible;
+    }
+
+    .patient-layout {
+        grid-template-columns: 1fr !important;
+        height: auto !important;
+    }
+
+    #brampton-map {
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        padding: 0.5rem;
+        font-size: 11px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .landing-grid {
+        grid-template-columns: 1fr;
+    }
 }
