@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brampton Pulse - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <img src="logo.png" alt="Brampton Pulse Logo" class="nav-logo-img">
+            <span class="nav-logo-text">Brampton Pulse</span>
+        </a>
+        <div class="nav-links">
+            <select id="language-select" class="nav-lang">
+                <option value="en">English</option>
+                <option value="fr">French / Français</option>
+                <option value="pa">Punjab / ਪੰਜਾਬੀ</option>
+                <option value="hi">Hindi / हिन्दी</option>
+            </select>
+            <a href="admin.html" class="nav-link nav-link-active">Admin Dashboard</a>
+            <a href="simulation.html" class="nav-link">Simulation Engine</a>
+            <a href="patient.html" class="nav-link">Patient View</a>
+        </div>
+        <div class="nav-auth">
+            <span class="live-badge">LIVE</span>
+            <span id="header-time">Loading...</span>
+            <a href="index.html" class="button button-outline" data-i18n="logoutButton">Logout</a>
+        </div>
+    </nav>
+
+    <div class="content-section fade-in">
+        <!-- Global Alert -->
+        <div id="overview-alert" class="card" style="border-left: 4px solid var(--success); margin-bottom: 1.5rem;">
+            <h2 style="margin:0; font-size: 1.25rem;" id="overview-alert-title">Condition X Status: <span style="color:var(--success);">All Clear</span></h2>
+            <p style="margin:0.5rem 0 0 0; color:var(--text-muted); font-size: 0.8125rem;" id="overview-alert-msg">No active cases detected in the Brampton network.</p>
+        </div>
+
+        <!-- Metrics Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+            <div class="card" style="text-align:center;">
+                <h3>Total Active Cases</h3>
+                <div class="metric-value" id="ov-active-cases" style="color: var(--text-main); font-size: 2rem;">0</div>
+            </div>
+            <div class="card" style="text-align:center;">
+                <h3>Total Deceased</h3>
+                <div class="metric-value" id="ov-deceased" style="color: var(--text-main); font-size: 2rem;">0</div>
+            </div>
+            <div class="card" style="text-align:center;">
+                <h3>High Risk Wards</h3>
+                <div class="metric-value" id="ov-risk-wards" style="color: var(--warning); font-size: 2rem;">0</div>
+            </div>
+        </div>
+
+        <!-- Details Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="card">
+                <h3>Ward Risk Assessment</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Ward Name</th>
+                            <th>Status</th>
+                            <th>Infection Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ward-risk-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>BML Clinic Network</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Wait Time</th>
+                            <th>Available Vaccines</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bml-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

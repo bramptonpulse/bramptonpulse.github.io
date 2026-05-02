@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brampton Pulse | Industrial Health Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <img src="logo.png" alt="Brampton Pulse Logo" class="nav-logo-img">
+            <span class="nav-logo-text">Brampton Pulse</span>
+        </a>
+        <div class="nav-links">
+            <select id="language-select" class="nav-lang">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+            <a href="patient.html" class="nav-link" data-i18n="navHome">Patient Portal</a>
+            <a href="admin.html" class="nav-link" data-i18n="navAdmin">Admin Dashboard</a>
+            <a href="simulation.html" class="nav-link" data-i18n="navSim">Simulation Engine</a>
+        </div>
+        <div class="nav-auth">
+            <span class="live-badge">SYSTEM ACTIVE</span>
+
+            <span id="header-time">00:00:00</span>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+        <h1 class="hero-title">Brampton Pulse</h1>
+        <p class="hero-sub">Industrial-grade real-time hospital intelligence and surge simulation for the Brampton
+            healthcare network.</p>
+
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+            <a href="patient.html" class="button" style="padding: 0.75rem 2rem;">Access Patient Portal</a>
+            <a href="admin.html" class="button button-outline" style="padding: 0.75rem 2rem;">Launch Admin Console</a>
+        </div>
+    </div>
+
+    <!-- MAIN SPECS SECTION -->
+    <div class="content-section fade-in">
+        <div class="landing-grid">
+
+            <div class="landing-card">
+                <h3>CyberNurse</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;">
+                    CyberNurse is a robot which takes the place of a nurse, so they can work 24/7 to take load off
+                    nurses in hospitals.
+                </p>
+            </div>
+
+            <div class="landing-card">
+                <h3>BML (Brampton Med-Link)</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;">
+                    Brampton Med-Link (BML) provides isolated clinics distributed across all 10 wards and will be on
+                    wheels to prevent ICU crowding.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="landing-card" style="margin-top: 2rem;">
+            <h3>Simulation</h3>
+            <p style="font-size: 0.875rem; line-height: 1.8; color: var(--text-muted);">
+                This can simulate the spread of Condition X in the city of Brampton.
+            </p>
+            <div style="margin-top: 1.5rem;">
+                <a href="simulation.html" class="button">Initialize Simulation Engine →</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

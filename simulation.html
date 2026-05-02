@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brampton Pulse - Simulation Engine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <img src="logo.png" alt="Brampton Pulse Logo" class="nav-logo-img">
+            <span class="nav-logo-text" data-i18n="titlePulse">Brampton Pulse</span>
+        </a>
+        <div class="nav-links">
+            <select id="language-select" class="nav-lang">
+                <option value="en">English</option>
+                <option value="fr">French / Français</option>
+                <option value="pa">Punjab / ਪੰਜਾਬੀ</option>
+                <option value="hi">Hindi / हिन्दी</option>
+            </select>
+            <a href="admin.html" class="nav-link" data-i18n="navAdmin">Admin Dashboard</a>
+            <a href="simulation.html" class="nav-link nav-link-active" data-i18n="navSim">Simulation Engine</a>
+            <a href="patient.html" class="nav-link" data-i18n="navHome">Patient View</a>
+        </div>
+        <div class="nav-auth">
+            <span class="live-badge">LIVE</span>
+            <span id="header-time"
+                style="font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text-muted);">Loading...</span>
+            <a href="index.html" class="button button-outline" data-i18n="btnLogout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="col scroll-col">
+            <div class="card" style="text-align: center;">
+                <h3>City Pulse Score</h3>
+                <div class="pulse-score-container">
+                    <div class="pulse-circle" id="pulse-circle-element">
+                        <div class="pulse-circle-value" id="city-pulse-score">20</div>
+                        <div class="pulse-circle-label">/ 100</div>
+                    </div>
+                    <div id="city-pulse-text"
+                        style="font-weight:700; font-size:1.125rem; color:var(--success); margin-top: 0.5rem;">All clear
+                    </div>
+                    <div style="font-size:0.8125rem; color:var(--text-muted);">Normal parameters</div>
+                </div>
+            </div>
+
+            <div id="ward-list-container" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div class="ward-item" data-ward="downtown">
+                    <div class="ward-info">
+                        <div class="name">Downtown Brampton</div>
+                        <div class="stats">35 reports · +2 today</div>
+                    </div>
+                    <div class="ward-val" id="score-downtown">19</div>
+                </div>
+                <div class="ward-item" data-ward="bramalea">
+                    <div class="ward-info">
+                        <div class="name">Bramalea</div>
+                        <div class="stats">43 reports · +1 today</div>
+                    </div>
+                    <div class="ward-val" id="score-bramalea">22</div>
+                </div>
+                <div class="ward-item" data-ward="castlemore">
+                    <div class="ward-info">
+                        <div class="name">Castlemore</div>
+                        <div class="stats">58 reports · +5 today</div>
+                    </div>
+                    <div class="ward-val" id="score-castlemore">31</div>
+                </div>
+                <div class="ward-item" data-ward="northpark">
+                    <div class="ward-info">
+                        <div class="name">North Park</div>
+                        <div class="stats">21 reports · 0 today</div>
+                    </div>
+                    <div class="ward-val" id="score-northpark">14</div>
+                </div>
+                <div class="ward-item" data-ward="springdale">
+                    <div class="ward-info">
+                        <div class="name">Springdale</div>
+                        <div class="stats">53 reports · +3 today</div>
+                    </div>
+                    <div class="ward-val" id="score-springdale">25</div>
+                </div>
+                <div class="ward-item" data-ward="fletchers">
+                    <div class="ward-info">
+                        <div class="name">Fletcher's Creek</div>
+                        <div class="stats">38 reports · +1 today</div>
+                    </div>
+                    <div class="ward-val" id="score-fletchers">19</div>
+                </div>
+                <div class="ward-item" data-ward="heartlake">
+                    <div class="ward-info">
+                        <div class="name">Heart Lake</div>
+                        <div class="stats">19 reports · -1 today</div>
+                    </div>
+                    <div class="ward-val" id="score-heartlake">12</div>
+                </div>
+                <div class="ward-item" data-ward="bramptonwest">
+                    <div class="ward-info">
+                        <div class="name">Brampton West</div>
+                        <div class="stats">31 reports · +2 today</div>
+                    </div>
+                    <div class="ward-val" id="score-bramptonwest">19</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTER COLUMN -->
+        <div class="col">
+
+
+            <div class="center-map-area">
+                <div class="map-grid">
+                    <!-- Map blocks injected dynamically via app.js -->
+                </div>
+
+                <div class="hud-legend"
+                    style="position: absolute; bottom: 1.5rem; left: 1.5rem; font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.4rem;"><span
+                            style="display:inline-block;width:10px;height:10px;background:var(--success);border-radius:2px;"></span>
+                        Normal</div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;"><span
+                            style="display:inline-block;width:10px;height:10px;background:var(--warning);border-radius:2px;"></span>
+                        Elevated</div>
+                    <div style="display: flex; align-items: center; gap: 0.4rem;"><span
+                            style="display:inline-block;width:10px;height:10px;background:var(--danger);border-radius:2px;"></span>
+                        Surge</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- RIGHT COLUMN -->
+        <div class="col scroll-col">
+            <div class="card">
+                <h3 data-i18n="cardSIR">SIR Model - Brampton</h3>
+
+                <div class="progress-row">
+                    <label><span>Susceptible</span><span id="lbl-s">100%</span></label>
+                    <div class="bar-bg">
+                        <div class="bar-fill" id="bar-s" style="background:var(--primary); width:100%;"></div>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <label><span>Infectious</span><span id="lbl-i">0%</span></label>
+                    <div class="bar-bg">
+                        <div class="bar-fill" id="bar-i" style="background:var(--danger); width:0%;"></div>
+                    </div>
+                </div>
+                <div class="progress-row">
+                    <label><span>Recovered</span><span id="lbl-r">0%</span></label>
+                    <div class="bar-bg">
+                        <div class="bar-fill" id="bar-r" style="background:var(--success); width:0%;"></div>
+                    </div>
+                </div>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.75rem; font-weight: 500;">
+                    R₀ = <span id="disp-r0">2.5</span> · β = 0.28 · γ = 0.20
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Auto Response Tiers</h3>
+                <div class="tier-item active" id="tier-green">
+                    <div class="tier-dot" style="background:var(--success);"></div>
+                    <div>
+                        <strong>Green · Normal</strong><br>
+                        Publish ward scores. Send weekly wellness tips to residents.
+                    </div>
+                </div>
+                <div class="tier-item" id="tier-yellow">
+                    <div class="tier-dot" style="background:var(--warning);"></div>
+                    <div>
+                        <strong>Yellow · Elevated</strong><br>
+                        Deploy mobile testing unit to community centre. Alert health team.
+                    </div>
+                </div>
+                <div class="tier-item" id="tier-red">
+                    <div class="tier-dot" style="background:var(--danger);"></div>
+                    <div>
+                        <strong>Red · Surge</strong><br>
+                        Activate overflow clinic. Alert hospital surge team.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="params-card">
+                <h3>Condition X Parameters</h3>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem; font-size:0.8125rem;">
+                    <div style="color:var(--text-muted);">Status</div>
+                    <div style="text-align:right; font-weight:700; color:var(--success);" id="param-status">Monitoring
+                    </div>
+                    <div style="color:var(--text-muted);">R₀ estimate</div>
+                    <div style="text-align:right; font-weight:700;" id="param-r0">Unknown</div>
+                    <div style="color:var(--text-muted);">Hotspot ward</div>
+                    <div style="text-align:right; font-weight:700;" id="param-hotspot">None</div>
+                </div>
+            </div>
+
+            <button class="btn-action" id="btn-simulate" data-i18n="btnSimulate">⚠ Simulate Condition X Surge</button>
+            <button class="button button-outline" id="btn-reset" style="width:100%; margin-top:0.75rem;"
+                data-i18n="btnReset">↺ Reset Simulation</button>
+
+        </div>
+
+    </div>
+
+    <!-- Ward Detail Modal -->
+    <div id="region-detail-card"
+        style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:380px; z-index:1001;"
+        class="card fade-in">
+        <h3 id="detail-region-name"
+            style="color: var(--text-dark); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+            Ward Details</h3>
+
+        <div style="font-size:0.875rem; line-height:1.8; margin-bottom: 1.5rem;">
+            <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--border);">
+                <span>Population</span><strong id="det-pop">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--border);">
+                <span>Current Infectious</span><strong id="det-i" style="color:var(--danger);">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--border);">
+                <span>Recovered</span><strong id="det-r" style="color:var(--success);">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-bottom: 1px dashed var(--border);">
+                <span>Deceased</span><strong id="det-d">0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between;"><span>Current Pulse Score</span><strong
+                    id="det-score">0</strong></div>
+        </div>
+
+        <h4
+            style="font-size: 0.8125rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+            Simulation Parameters</h4>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+                <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.4rem;">Initial
+                    Infectious Cases</label>
+                <input type="number" id="input-init-i"
+                    style="width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: var(--radius-md);"
+                    placeholder="e.g. 10">
+            </div>
+            <div>
+                <label style="display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.4rem;">Social
+                    Distancing (Mobility Reduc.)</label>
+                <input type="range" id="input-mobility" min="0" max="100" value="0" style="width: 100%;">
+                <div
+                    style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem;">
+                    <span>None</span>
+                    <span id="label-mobility">0%</span>
+                    <span>Full</span>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+                <button class="button" id="btn-save-ward" style="flex: 1;">Save & Apply</button>
+                <button class="button button-outline" id="btn-close-modal" style="flex: 1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,448 @@
+:root {
+    /* Fusion 360 - Refined Industrial Palette */
+    --primary: #1a73e8;
+    --primary-hover: #1557b0;
+    --primary-light: rgba(26, 115, 232, 0.1);
+    
+    --success: #2e7d32;
+    --success-bg: #e8f5e9;
+    --warning: #f57c00;
+    --warning-bg: #fff3e0;
+    --danger: #d32f2f;
+    --danger-bg: #ffebee;
+    
+    --bg-main: #f0f0f0;
+    --bg-side: #ffffff;
+    --bg-dark: #2b2b2b;
+    --bg-toolbar: #3c3c3c;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --text-light: #ffffff;
+    --border: #d1d1d1;
+    
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --font-main: 'Inter', system-ui, sans-serif;
+    --font-mono: 'Roboto Mono', monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-size: 13px; /* Smaller base size for Fusion look */
+    line-height: 1.4;
+    overflow: hidden;
+}
+
+/* NAVBAR - Fusion Toolbar */
+.navbar {
+    height: 44px;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    border-bottom: 1px solid #000;
+}
+
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-logo-img {
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.nav-logo-text {
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-links {
+    display: flex;
+    height: 100%;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #999;
+    padding: 0 1.25rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: 0.1s;
+}
+
+.nav-link:hover {
+    color: white;
+    background: rgba(255,255,255,0.05);
+}
+
+.nav-link-active {
+    color: white;
+    background: var(--bg-toolbar);
+    box-shadow: inset 0 -2px 0 var(--primary);
+}
+
+/* BUTTONS */
+.button {
+    background: var(--primary);
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0.4rem 1rem;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background: var(--primary-hover);
+}
+
+.button-outline {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ccc;
+}
+
+.button-outline:hover {
+    background: #444;
+    color: white;
+}
+
+/* DASHBOARD GRID */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    height: calc(100vh - 44px - 70px);
+    background: var(--border);
+    gap: 1px;
+}
+
+.col {
+    background: var(--bg-side);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.scroll-col {
+    overflow-y: auto;
+}
+
+/* CARDS / PANELS */
+.card {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.card h3 {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* WARD LIST */
+.ward-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ward-item:hover {
+    background: #f8f8f8;
+}
+
+.ward-item.selected {
+    background: #f0f7ff;
+    box-shadow: inset 4px 0 0 var(--primary);
+}
+
+.ward-info .name {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.ward-info .stats {
+    font-size: 10px;
+    color: #888;
+    font-family: var(--font-mono);
+}
+
+.ward-val {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-align: right;
+    color: var(--primary);
+}
+
+/* CENTER VIEWPORT */
+.center-header {
+    background: var(--success-bg);
+    color: var(--success);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.center-map-area {
+    flex: 1;
+    background: #e5e5e5;
+    position: relative;
+    overflow: hidden;
+}
+
+.map-grid {
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, #ccc 1px, transparent 1px),
+        linear-gradient(to right, #ddd 1px, transparent 1px),
+        linear-gradient(to bottom, #ddd 1px, transparent 1px);
+    background-size: 30px 30px;
+    position: relative;
+}
+
+.map-block {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: 1px solid #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.map-block:hover {
+    border-color: var(--primary);
+    z-index: 10;
+}
+
+.map-block.selected {
+    border-color: var(--primary);
+    outline: 2px solid var(--primary);
+    background: #fff;
+}
+
+.map-block span {
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #777;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.map-block strong {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    margin-top: 4px;
+}
+
+/* Ward Coordinates */
+#block-castlemore   { top: 10%; right: 15%; }
+#block-northpark    { top: 15%; left: 40%; }
+#block-bramalea     { top: 50%; right: 10%; }
+#block-springdale   { top: 25%; left: 30%; }
+#block-downtown     { top: 65%; left: 45%; }
+#block-fletchers    { top: 75%; left: 15%; }
+#block-heartlake    { top: 10%; left: 15%; }
+#block-bramptonwest { top: 45%; left: 5%; }
+#block-bramptoneast { top: 80%; right: 20%; }
+#block-goremeadows  { top: 35%; right: 30%; }
+
+/* BOTTOM STRIP */
+.bottom-strip {
+    height: 70px;
+    background: #333;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #000;
+}
+
+.metric-box {
+    border-right: 1px solid #444;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.metric-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.metric-value {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+
+.metric-sub {
+    font-size: 9px;
+    color: #666;
+}
+
+/* MISC */
+.live-badge {
+    background: #d32f2f;
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 1px 4px;
+    margin-right: 10px;
+    border-radius: 1px;
+}
+
+#header-time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #777;
+    margin-right: 15px;
+}
+
+.progress-row {
+    margin-bottom: 1rem;
+}
+
+.progress-row label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.bar-bg {
+    height: 8px;
+    background: #eee;
+    border: 1px solid #ddd;
+}
+
+.bar-fill {
+    height: 100%;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    text-align: left;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #888;
+    padding: 8px;
+    border-bottom: 2px solid #eee;
+}
+
+.admin-table td {
+    padding: 8px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 12px;
+}
+
+/* Modals */
+#region-detail-card {
+    background: white;
+    border: 1px solid #000;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+}
+
+.fade-in {
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* LANDING PAGE STYLES */
+.hero-banner {
+    padding: 8rem 2rem;
+    background: #1e1e1e;
+    color: white;
+    text-align: center;
+    border-bottom: 2px solid #000;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+.hero-sub {
+    font-size: 1.125rem;
+    color: #999;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.content-section {
+    max-width: 1100px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.landing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.landing-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 2rem;
+}
+
+.landing-card h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--primary);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}

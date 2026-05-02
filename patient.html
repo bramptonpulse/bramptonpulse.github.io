@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brampton Pulse | Patient View</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        .patient-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 1rem;
+            padding: 1rem;
+            height: calc(100vh - 40px);
+        }
+
+        #brampton-map {
+            height: 100%;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <img src="logo.png" alt="Brampton Pulse Logo" class="nav-logo-img">
+            <span class="nav-logo-text">Brampton Pulse</span>
+        </a>
+        <div class="nav-links">
+            <select id="language-select" class="nav-lang">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="pa">ਪੰਜਾਬੀ</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+            <a href="admin.html" class="nav-link">Admin Dashboard</a>
+            <a href="simulation.html" class="nav-link">Simulation Engine</a>
+            <a href="patient.html" class="nav-link nav-link-active">Patient Portal</a>
+        </div>
+        <div class="nav-auth">
+            <a href="index.html" class="button button-outline">Exit Portal</a>
+        </div>
+    </nav>
+
+    <div class="patient-layout fade-in">
+        <div id="brampton-map"></div>
+
+        <div class="col scroll-col" style="gap: 1rem; padding: 1px;">
+            <div class="card">
+                <h3>Closest Facilities</h3>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">Based on your current
+                    location in Brampton.</p>
+
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="ward-item">
+                        <div class="ward-info">
+                            <div class="name">Brampton Civic Hospital</div>
+                        </div>
+                        <div class="ward-item">
+                            <div class="ward-info">
+                                <div class="name">Peel Memorial Centre</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>BML Clinic Status</h3>
+                        <table class="admin-table">
+                            <tr>
+                                <th>Clinic</th>
+                                <th>Wait</th>
+                            </tr>
+                            <tr>
+                                <td>Castlemore BML</td>
+                                <td>15m</td>
+                            </tr>
+                            <tr>
+                                <td>Springdale BML</td>
+                                <td>30m</td>
+                            </tr>
+                            <tr>
+                                <td>North Park BML</td>
+                                <td>20m</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <script src="app.js"></script>
+</body>
+
+</html>
