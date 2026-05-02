@@ -40,7 +40,7 @@ body {
     color: var(--text-main);
     font-size: 13px; /* Smaller base size for Fusion look */
     line-height: 1.4;
-    overflow: hidden;
+     hidden;
 }
 
 /* NAVBAR - Fusion Toolbar */
@@ -144,7 +144,7 @@ body {
     background: var(--bg-side);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    
 }
 
 .scroll-col {
@@ -217,7 +217,7 @@ body {
     flex: 1;
     background: #e5e5e5;
     position: relative;
-    overflow: hidden;
+    
 }
 
 .map-grid {
